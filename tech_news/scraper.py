@@ -1,4 +1,5 @@
 # Requisito 1
+# hy guess
 def fetch(url):
     """Seu código deve vir aqui"""
 
