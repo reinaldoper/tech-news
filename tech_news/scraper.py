@@ -1,5 +1,7 @@
 import requests
 from time import sleep
+from bs4 import BeautifulSoup
+
 
 HEADERS = {"user-agent": "Fake user-agent"}
 
@@ -19,7 +21,15 @@ def fetch(url):
 
 # Requisito 2
 def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
+    soup = BeautifulSoup(html_content, "html.parser")
+    soup.prettify()
+    array = []
+    for item in soup.find_all("a", {"class": "cs-overlay-link"}):
+        array.append(item['href'])
+    if len(array) > 0:
+        return array
+    else:
+        return []
 
 
 # Requisito 3
