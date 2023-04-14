@@ -56,8 +56,10 @@ def scrape_news(html_content):
     author = soup.find("a", {"class": "url fn n"}).get_text()
     time = soup.find("li", {"class": "meta-reading-time"}).get_text()
     time_temp = time[0] + time[1]
-    array = soup.find_all("p")[0].get_text()
-    new_array = array.replace("\xa0", "").strip()
+    array = []
+    for i in soup.find_all("p"):
+        array.append(i.get_text().replace("\xa0", "").strip())
+    new_array = array[0]
     category = soup.find("span", {"class": "label"}).get_text()
     return {
         "url": href,
