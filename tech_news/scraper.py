@@ -1,12 +1,16 @@
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
-from tech_news.database import (
-    create_news
-)
+from tech_news.database import create_news
 
 
-HEADERS = {"user-agent": "Fake user-agent"}
+HEADERS = {
+    "user-agent": (
+        "Mozilla/5.0 (X11; Linux x86_64)"
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0"
+        "Safari/537.36"
+    )
+}
 
 
 # Requisito 1
@@ -28,7 +32,7 @@ def scrape_updates(html_content):
     soup.prettify()
     array = []
     for item in soup.find_all("a", {"class": "cs-overlay-link"}):
-        array.append(item['href'])
+        array.append(item["href"])
     if len(array) > 0:
         return array
     else:
@@ -60,16 +64,18 @@ def scrape_news(html_content):
     for i in soup.find_all("p"):
         array.append(i.get_text().replace("\xa0", "").strip())
     new_array = array[0]
+    array_img = soup.find("source")["srcset"]
     category = soup.find("span", {"class": "label"}).get_text()
     return {
         "url": href,
         "title": title,
+        "src": array_img,
         "timestamp": data,
         "writer": author,
         "reading_time": int(time_temp),
         "summary": new_array,
         "category": category,
-        }
+    }
 
 
 # Requisito 5
