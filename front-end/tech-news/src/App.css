@@ -42,6 +42,7 @@
   text-align: justify;
   margin-top: 20px;
   color: blue;
+  justify-content: center;
 }
 
 li {
@@ -52,7 +53,8 @@ li {
   display: flex;
   flex-wrap: wrap;
   white-space: normal;
-  width: 250px;
+  justify-content: center;
+  
 }
 
 .div-news {

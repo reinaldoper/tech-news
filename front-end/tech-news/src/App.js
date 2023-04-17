@@ -92,7 +92,7 @@ function App() {
       <li>{i.category}</li>
       <li>{i.title}</li>
       <li>{i.writer}</li>
-      <li className='url'>{i.url}</li>
+      <li className='url'><a href={i.url}><h3>Link</h3></a></li>
       <li className='summary'>{i.summary}</li>
     </div>
   ))
@@ -100,7 +100,7 @@ function App() {
   const data = newTitle.map((i, index) => (
     <div key={index} className='div-data'>
       <li>{i[0]}</li>
-      <li className='summary'>{i[1]}</li>
+      <li className='url'><a href={i[1]}><h3>Link</h3></a></li>
     </div>
   ))
 
